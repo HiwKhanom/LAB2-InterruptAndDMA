@@ -1041,7 +1041,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  	  HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adcBuffer, 20);
+  	HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adcBuffer, 20);
  8000cd4:	2214      	movs	r2, #20
  8000cd6:	490a      	ldr	r1, [pc, #40]	; (8000d00 <main+0x48>)
  8000cd8:	480a      	ldr	r0, [pc, #40]	; (8000d04 <main+0x4c>)
@@ -1607,12 +1607,12 @@ void ADCvalueConverter() {
  8001028:	b580      	push	{r7, lr}
  800102a:	b082      	sub	sp, #8
  800102c:	af00      	add	r7, sp, #0
-	for (int i = 0; i < 10; i++) {
+	for (uint8_t i = 0; i < 10; i++) {
  800102e:	2300      	movs	r3, #0
- 8001030:	607b      	str	r3, [r7, #4]
+ 8001030:	71fb      	strb	r3, [r7, #7]
  8001032:	e035      	b.n	80010a0 <ADCvalueConverter+0x78>
 		if(i == 0){
- 8001034:	687b      	ldr	r3, [r7, #4]
+ 8001034:	79fb      	ldrb	r3, [r7, #7]
  8001036:	2b00      	cmp	r3, #0
  8001038:	d105      	bne.n	8001046 <ADCvalueConverter+0x1e>
 			avgVolt = 0;
@@ -1625,8 +1625,8 @@ void ADCvalueConverter() {
  8001044:	801a      	strh	r2, [r3, #0]
 		}
 		avgVolt += adcBuffer[i].adcIN0;
- 8001046:	4a5c      	ldr	r2, [pc, #368]	; (80011b8 <ADCvalueConverter+0x190>)
- 8001048:	687b      	ldr	r3, [r7, #4]
+ 8001046:	79fb      	ldrb	r3, [r7, #7]
+ 8001048:	4a5b      	ldr	r2, [pc, #364]	; (80011b8 <ADCvalueConverter+0x190>)
  800104a:	f832 2023 	ldrh.w	r2, [r2, r3, lsl #2]
  800104e:	4b58      	ldr	r3, [pc, #352]	; (80011b0 <ADCvalueConverter+0x188>)
  8001050:	881b      	ldrh	r3, [r3, #0]
@@ -1635,8 +1635,8 @@ void ADCvalueConverter() {
  8001056:	4b56      	ldr	r3, [pc, #344]	; (80011b0 <ADCvalueConverter+0x188>)
  8001058:	801a      	strh	r2, [r3, #0]
 		avgTempC += adcBuffer[i].adcTemp;
- 800105a:	4a57      	ldr	r2, [pc, #348]	; (80011b8 <ADCvalueConverter+0x190>)
- 800105c:	687b      	ldr	r3, [r7, #4]
+ 800105a:	79fb      	ldrb	r3, [r7, #7]
+ 800105c:	4a56      	ldr	r2, [pc, #344]	; (80011b8 <ADCvalueConverter+0x190>)
  800105e:	009b      	lsls	r3, r3, #2
  8001060:	4413      	add	r3, r2
  8001062:	885a      	ldrh	r2, [r3, #2]
@@ -1647,7 +1647,7 @@ void ADCvalueConverter() {
  800106c:	4b51      	ldr	r3, [pc, #324]	; (80011b4 <ADCvalueConverter+0x18c>)
  800106e:	801a      	strh	r2, [r3, #0]
 		if(i == 9){
- 8001070:	687b      	ldr	r3, [r7, #4]
+ 8001070:	79fb      	ldrb	r3, [r7, #7]
  8001072:	2b09      	cmp	r3, #9
  8001074:	d111      	bne.n	800109a <ADCvalueConverter+0x72>
 			avgVolt /= 10;
@@ -1668,13 +1668,13 @@ void ADCvalueConverter() {
  8001094:	b29a      	uxth	r2, r3
  8001096:	4b47      	ldr	r3, [pc, #284]	; (80011b4 <ADCvalueConverter+0x18c>)
  8001098:	801a      	strh	r2, [r3, #0]
-	for (int i = 0; i < 10; i++) {
- 800109a:	687b      	ldr	r3, [r7, #4]
+	for (uint8_t i = 0; i < 10; i++) {
+ 800109a:	79fb      	ldrb	r3, [r7, #7]
  800109c:	3301      	adds	r3, #1
- 800109e:	607b      	str	r3, [r7, #4]
- 80010a0:	687b      	ldr	r3, [r7, #4]
+ 800109e:	71fb      	strb	r3, [r7, #7]
+ 80010a0:	79fb      	ldrb	r3, [r7, #7]
  80010a2:	2b09      	cmp	r3, #9
- 80010a4:	ddc6      	ble.n	8001034 <ADCvalueConverter+0xc>
+ 80010a4:	d9c6      	bls.n	8001034 <ADCvalueConverter+0xc>
 		}
 	}
 

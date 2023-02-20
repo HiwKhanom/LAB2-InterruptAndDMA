@@ -112,7 +112,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  	  HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adcBuffer, 20);
+  	HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adcBuffer, 20);
 	while (1) {
     /* USER CODE END WHILE */
 
@@ -324,7 +324,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 void ADCvalueConverter() {
-	for (int i = 0; i < 10; i++) {
+	for (uint8_t i = 0; i < 10; i++) {
 		if(i == 0){
 			avgVolt = 0;
 			avgTempC = 0;
@@ -340,8 +340,6 @@ void ADCvalueConverter() {
 	Volt = (((avgVolt * 3.3) / 4096)* 1000)* 2;
 	//V25 = 757 mV
 	TempK = (((((avgTempC * 3.3)/ 4096)*1000)- 760)/ 2.5) + 25 + 273.15;
-
-
 
 }
 /* USER CODE END 4 */
